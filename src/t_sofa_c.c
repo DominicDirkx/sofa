@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <sofa.h>
+#include "sofa.h"
 
 static int verbose = 0;
 
