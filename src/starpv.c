@@ -118,11 +118,11 @@ int iauStarpv(double ra, double dec,
 **
 **     Stumpff, P., 1985, Astron.Astrophys. 144, 232-240.
 **
-**  This revision:  2013 June 18
+**  This revision:  2016 December 8
 **
-**  SOFA release 2015-02-09
+**  SOFA release 2016-05-03
 **
-**  Copyright (C) 2015 IAU SOFA Board.  See notes at end.
+**  Copyright (C) 2016 IAU SOFA Board.  See notes at end.
 */
 {
 /* Smallest allowed parallax */
@@ -141,6 +141,7 @@ int iauStarpv(double ra, double dec,
           d = 0.0, del = 0.0,       /* to prevent */
           odd = 0.0, oddel = 0.0,   /* compiler   */
           od = 0.0, odel = 0.0;     /* warnings   */
+
 
 /* Distance (AU). */
    if (px >= PXMIN) {
@@ -187,7 +188,8 @@ int iauStarpv(double ra, double dec,
    betr = betsr;
    for (i = 0; i < IMAX; i++) {
       d = 1.0 + betr;
-      del = sqrt(1.0 - betr*betr - bett*bett) - 1.0;
+      w = betr*betr + bett*bett;
+      del = - w / (sqrt(1.0 - w) + 1.0);
       betr = d * betsr + del;
       bett = d * betst;
       if (i > 0) {
@@ -217,7 +219,7 @@ int iauStarpv(double ra, double dec,
 
 /*----------------------------------------------------------------------
 **
-**  Copyright (C) 2015
+**  Copyright (C) 2016
 **  Standards Of Fundamental Astronomy Board
 **  of the International Astronomical Union.
 **

@@ -36,7 +36,7 @@ int iauDat(int iy, int im, int id, double fd, double *deltat )
 **     :  even if no leap seconds have been       :
 **     :  added.                                  :
 **     :                                          :
-**     :  Latest leap second:  2015 June 30       :
+**     :  Latest leap second:  2016 December 31   :
 **     :                                          :
 **     :__________________________________________:
 **
@@ -120,15 +120,15 @@ int iauDat(int iy, int im, int id, double fd, double *deltat )
 **  Called:
 **     iauCal2jd    Gregorian calendar to JD
 **
-**  This revision:  2015 February 27
+**  This revision:  2016 July 7
 **
-**  SOFA release 2015-02-09
+**  SOFA release 2016-05-03
 **
-**  Copyright (C) 2015 IAU SOFA Board.  See notes at end.
+**  Copyright (C) 2016 IAU SOFA Board.  See notes at end.
 */
 {
 /* Release year for this version of iauDat */
-   enum { IYV = 2015};
+   enum { IYV = 2016};
 
 /* Reference dates (MJD) and drift rates (s/day), pre leap seconds */
    static const double drift[][2] = {
@@ -196,7 +196,8 @@ int iauDat(int iy, int im, int id, double fd, double *deltat )
       { 2006,  1, 33.0       },
       { 2009,  1, 34.0       },
       { 2012,  7, 35.0       },
-      { 2015,  7, 36.0       }
+      { 2015,  7, 36.0       },
+      { 2017,  1, 37.0       }
    };
 
 /* Number of Delta(AT) changes */
@@ -250,7 +251,7 @@ int iauDat(int iy, int im, int id, double fd, double *deltat )
 
 /*----------------------------------------------------------------------
 **
-**  Copyright (C) 2015
+**  Copyright (C) 2016
 **  Standards Of Fundamental Astronomy Board
 **  of the International Astronomical Union.
 **
