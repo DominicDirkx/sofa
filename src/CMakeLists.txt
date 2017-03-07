@@ -28,6 +28,10 @@ set(SRCROOT ${PROJECT_SOURCE_DIR})
 set(LIBROOT "${SRCROOT}/../lib")
 set(BINROOT "${SRCROOT}/../bin")
 
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${LIBROOT})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${LIBROOT})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BINROOT})
+
 if (WIN32)
  if (MSVC)
    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc /Ox /W3 /FC -D_SCL_SECURE_NO_WARNINGS")
@@ -69,16 +73,22 @@ endmacro(setup_library_target)
  #Set the source files.
 
 # Set the header files.
-#set(SOFAINTERFACE_HEADERS
+#set(SOFA_HEADERS
 #  "${SRCROOT}/sofa.h"
 #  "${SRCROOT}/sofam.h"
 #)
-file(GLOB_RECURSE SOFAINTERFACE_SOURCES RELATIVE ${SRCROOT} *.c)
-file(GLOB_RECURSE SOFAINTERFACE_HEADERS RELATIVE ${SRCROOT} *.h)
+file(GLOB_RECURSE SOFA_SOURCES RELATIVE ${SRCROOT} *.c)
+file(GLOB_RECURSE SOFA_HEADERS RELATIVE ${SRCROOT} *.h)
+
+list(REMOVE_ITEM SOFA_SOURCES "t_sofa_c.c")
 
 # Add static libraries.
 
-add_library(sofa STATIC ${SOFAINTERFACE_SOURCES} ${SOFAINTERFACE_HEADERS})
-setup_library_target(sofa "${SRCROOT}${SOFAINTERFACEDIR}")
+add_library(sofa STATIC ${SOFA_SOURCES} ${SOFA_HEADERS})
+
+enable_testing()
+add_executable(sofa-test "${SRCROOT}/t_sofa_c.c")
+target_link_libraries(sofa-test sofa m)
+add_test(sofa-test "${BINROOT}/sofa-test")
 
 # End of file.
