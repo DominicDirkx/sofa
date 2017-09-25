@@ -119,8 +119,8 @@ int iauPvstar(double pv[2][3], double *ra, double *dec,
    vt = iauPm(ut);
 
 /* Special-relativity dimensionless parameters. */
-   bett = vt / DC;
-   betr = vr / DC;
+   bett = vt / DC_;
+   betr = vr / DC_;
 
 /* The inertial-to-observed correction terms. */
    d = 1.0 + betr;

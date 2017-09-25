@@ -165,7 +165,7 @@ int iauStarpv(double ra, double dec,
 
 /* If excessive velocity, arbitrarily set it to zero. */
    v = iauPm(pv[1]);
-   if (v / DC > VMAX) {
+   if (v / DC_ > VMAX) {
       iauZp(pv[1]);
       iwarn += 2;
    }
@@ -180,8 +180,8 @@ int iauStarpv(double ra, double dec,
    vst = iauPm(ust);
 
 /* Special-relativity dimensionless parameters. */
-   betsr = vsr / DC;
-   betst = vst / DC;
+   betsr = vsr / DC_;
+   betst = vst / DC_;
 
 /* Determine the inertial-to-observed relativistic correction terms. */
    bett = betst;

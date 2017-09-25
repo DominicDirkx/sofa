@@ -118,7 +118,7 @@ typedef struct {
 #define AULT 499.004782
 
 /* Speed of light (AU per day) */
-#define DC (DAYSEC / AULT)
+#define DC_ (DAYSEC / AULT)
 
 /* L_G = 1 - d(TT)/d(TCG) */
 #define ELG (6.969290134e-10)
